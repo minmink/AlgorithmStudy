@@ -16,12 +16,12 @@ public class BJ15685Curve {
 		int[] dc = {1, 0, -1, 0};
 		int[] dir = new int[(int) Math.pow(2, 10)];
 		int[] tempDir = new int[(int) Math.pow(2, 9) + 1];
-		int[][] map = new int[300][300];
+		int[][] map = new int[101][101];
 		for (int i = 0; i < N; i++) {
 			s = br.readLine();
 			st = new StringTokenizer(s, " ");
-			int col = Integer.parseInt(st.nextToken()) + 100;
-			int row = Integer.parseInt(st.nextToken()) + 100;
+			int col = Integer.parseInt(st.nextToken());
+			int row = Integer.parseInt(st.nextToken());
 			int d = Integer.parseInt(st.nextToken());
 			int g = Integer.parseInt(st.nextToken());
 			dir[0] = d;
@@ -46,20 +46,12 @@ public class BJ15685Curve {
 		}
 		
 		int cnt = 0;
-		for (int i = 0; i < 300; i++) {
-			for (int j = 0; j < 300; j++) {
-				if (map[i][j] == 0)
-					continue;
-				if (i + 1 < 300 && map[i + 1][j] == 0)
-					continue;
-				if (j + 1 < 300 && map[i][j + 1] == 0)
-					continue;
-				if (i + 1 < 300 && j + 1 < 300 && map[i + 1][j + 1] == 0)
-					continue;
-				cnt++;
+		for (int i = 0; i < 100; i++) {
+			for (int j = 0; j < 100; j++) {
+				if (map[i][j] > 0 && map[i + 1][j] > 0 && map[i][j + 1] > 0 && map[i + 1][j + 1] > 0)
+					cnt++;
 			}
 		}
 		System.out.println(cnt);
 	}
-
 }
